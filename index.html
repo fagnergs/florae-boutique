@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FLORAÉ | Moda Feminina — Floresça no seu estilo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: '#F7F4EF',
+            sage: '#7D8F74',
+            dusty: '#D9A7A1',
+            gold: '#C9B27B',
+            sageDark: '#5F6F58'
+          },
+          fontFamily: {
+            serif: ['Playfair Display', 'Georgia', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: Inter, system-ui, sans-serif; background: #F7F4EF; color: #3d3d3d; }
+    .font-serif { font-family: 'Playfair Display', Georgia, serif; }
+    .product-card:hover img { transform: scale(1.05); }
+    .product-card img { transition: transform .6s cubic-bezier(.16,1,.3,1); }
+    .cart-drawer { transition: transform .4s cubic-bezier(.16,1,.3,1); }
+    .cart-drawer.open { transform: translateX(0); }
+  </style>
+</head>
+<body class="antialiased">
+  <header class="sticky top-0 z-50 bg-cream/95 backdrop-blur-md border-b border-sage/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="flex items-center justify-between h-16 md:h-20">
+        <a href="#" class="flex items-center gap-2">
+          <span class="font-serif text-xl md:text-2xl tracking-wide text-sageDark">FLORAÉ</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-sageDark/80">
+          <a href="#novidades" class="hover:text-sage">Novidades</a>
+          <a href="#looks" class="hover:text-sage">Looks</a>
+          <a href="#sobre" class="hover:text-sage">Sobre nós</a>
+          <a href="#atendimento" class="hover:text-sage">Atendimento</a>
+        </nav>
+        <div class="flex items-center gap-3">
+          <a href="https://wa.me/5511999999999" target="_blank" rel="noopener" class="hidden sm:inline-flex text-sm text-sageDark hover:text-sage">WhatsApp</a>
+          <button id="cartBtn" class="relative p-2 text-sageDark hover:text-sage" aria-label="Carrinho">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z"/></svg>
+            <span id="cartCount" class="absolute -top-0.5 -right-0.5 bg-dusty text-white text-[10px] font-semibold w-4.5 h-4.5 rounded-full flex items-center justify-center scale-0">0</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="assets/images/vestido-rosa.jpg" alt="FLORAÉ" class="w-full h-full object-cover opacity-90"/>
+      <div class="absolute inset-0 bg-gradient-to-r from-cream/95 via-cream/70 to-transparent"></div>
+    </div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 py-20 md:py-32">
+      <div class="max-w-xl">
+        <p class="text-sm tracking-[0.2em] uppercase text-sage mb-4">Holambra • SP</p>
+        <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl leading-tight text-sageDark mb-4">Floresça no<br>seu estilo.</h1>
+        <p class="text-base md:text-lg text-sageDark/80 mb-8 max-w-md">Uma curadoria de moda feminina para mulheres que valorizam a beleza dos detalhes. Peças escolhidas com carinho, em poucas unidades.</p>
+        <div class="flex flex-wrap gap-3">
+          <a href="#novidades" class="inline-flex items-center px-6 py-3 bg-sage text-cream text-sm font-medium tracking-wide hover:bg-sageDark transition rounded-full">Ver novidades</a>
+          <a href="https://wa.me/5511999999999" target="_blank" rel="noopener" class="inline-flex items-center px-6 py-3 border border-sage/40 text-sageDark text-sm font-medium tracking-wide hover:border-sage hover:bg-sage/5 transition rounded-full">Pedir pelo WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="novidades" class="py-16 md:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-12">
+        <p class="text-sm tracking-[0.2em] uppercase text-sage mb-2">Curadoria exclusiva</p>
+        <h2 class="font-serif text-3xl md:text-4xl text-sageDark">Primeiras peças</h2>
+        <p class="mt-3 text-sageDark/70 max-w-md mx-auto">Poucas unidades. Escolhas especiais. Cada peça selecionada com carinho.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8" id="productGrid"></div>
+    </div>
+  </section>
+
+  <section id="looks" class="py-16 md:py-24 bg-white/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="grid md:grid-cols-2 gap-10 items-center">
+        <div>
+          <p class="text-sm tracking-[0.2em] uppercase text-sage mb-3">Look do dia</p>
+          <h2 class="font-serif text-3xl md:text-4xl text-sageDark mb-4">Para mulheres que gostam de se vestir bem</h2>
+          <p class="text-sageDark/80 leading-relaxed mb-6">Se sentir bonitas e continuar sendo elas mesmas. Peças leves, femininas e atuais.</p>
+          <a href="#novidades" class="inline-flex items-center text-sage font-medium hover:text-sageDark">Explorar a coleção →</a>
+        </div>
+        <div class="relative">
+          <div class="aspect-[4/5] rounded-2xl overflow-hidden shadow-lg">
+            <img src="assets/images/macacao-sage.jpg" alt="Macacão Sage" class="w-full h-full object-cover"/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre" class="py-16 md:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="relative">
+          <div class="aspect-square rounded-2xl overflow-hidden">
+            <img src="assets/images/vestido-linho.jpg" alt="Sobre a FLORAÉ" class="w-full h-full object-cover"/>
+          </div>
+        </div>
+        <div>
+          <p class="text-sm tracking-[0.2em] uppercase text-sage mb-3">Sobre a FLORAÉ</p>
+          <h2 class="font-serif text-3xl md:text-4xl text-sageDark mb-5">Uma curadoria feita com carinho</h2>
+          <p class="text-sageDark/80 leading-relaxed mb-4">Nascida em Holambra, a cidade que sabe valorizar a beleza dos detalhes, a FLORAÉ é mais que moda. É sobre se sentir bem, todos os dias.</p>
+          <p class="text-sageDark/80 leading-relaxed">Selecionamos peças leves, femininas e atuais — sempre em poucas unidades.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="atendimento" class="py-16 md:py-20 bg-sage text-cream">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+      <h2 class="font-serif text-3xl md:text-4xl mb-4">Pronta para florescer?</h2>
+      <p class="text-cream/90 mb-8 max-w-lg mx-auto">Peça pelo WhatsApp e receba com carinho.</p>
+      <a href="https://wa.me/5511999999999?text=Olá!%20Quero%20florescer%20com%20a%20FLORAÉ" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-8 py-3.5 bg-cream text-sageDark font-medium rounded-full hover:bg-white transition shadow-lg">Falar com a FLORAÉ</a>
+    </div>
+  </section>
+
+  <footer class="py-12 border-t border-sage/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center">
+      <div class="font-serif text-xl text-sageDark">FLORAÉ</div>
+      <p class="text-xs text-sage/70 mt-1">Floresça no seu estilo. • Holambra – SP</p>
+      <p class="text-[10px] text-sage/50 mt-3">v1.0.1 — protótipo</p>
+    </div>
+  </footer>
+
+  <div id="cartOverlay" class="fixed inset-0 bg-black/30 z-50 opacity-0 pointer-events-none"></div>
+  <div id="cartDrawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-cream shadow-2xl z-50 cart-drawer translate-x-full flex flex-col">
+    <div class="flex items-center justify-between p-5 border-b border-sage/10">
+      <h3 class="font-serif text-lg text-sageDark">Seu carrinho</h3>
+      <button id="closeCart" class="p-2 text-sageDark/60" aria-label="Fechar"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></button>
+    </div>
+    <div id="cartItems" class="flex-1 overflow-y-auto p-5 space-y-4"></div>
+    <div class="p-5 border-t border-sage/10 bg-white/50">
+      <div class="flex justify-between text-sm mb-4"><span class="text-sageDark/70">Subtotal</span><span id="cartTotal" class="font-medium text-sageDark">R$ 0</span></div>
+      <button id="checkoutBtn" class="w-full py-3.5 bg-sage text-cream font-medium rounded-full hover:bg-sageDark transition disabled:opacity-50" disabled>Finalizar pelo WhatsApp</button>
+    </div>
+  </div>
+
+  <script>
+    const products = [
+      { id: 1, name: "Vestido Linho Rosa", price: 279, image: "assets/images/vestido-rosa.jpg", tag: "Poucas unidades", desc: "Vestido midi em linho suave, tom dusty pink. Caimento delicado e feminino." },
+      { id: 2, name: "Macacão Sage", price: 329, image: "assets/images/macacao-sage.jpg", tag: "Exclusivo", desc: "Macacão em linho sage com decote V e pernas amplas. Conforto e elegância." },
+      { id: 3, name: "Vestido Linho Off-White", price: 249, image: "assets/images/vestido-offwhite.jpg", tag: "Clássico", desc: "Vestido em linho off-white, silhueta clean e atemporal. Leveza pura." },
+      { id: 4, name: "Conjunto Linho Cream", price: 359, image: "assets/images/conjunto-cream.jpg", tag: "Novidade", desc: "Camisa oversized em linho cream + calça wide leg. Versátil e sofisticado." },
+      { id: 5, name: "Vestido Renda Off-White", price: 319, image: "assets/images/vestido-renda.jpg", tag: "Romântico", desc: "Vestido longo em renda delicada. Feminilidade pura." },
+      { id: 6, name: "Vestido Linho Natural", price: 269, image: "assets/images/vestido-linho.jpg", tag: "Look do dia", desc: "Vestido em linho natural, caimento fluido e elegante." }
+    ];
+
+    let cart = [];
+
+    function renderProducts() {
+      document.getElementById('productGrid').innerHTML = products.map(p => `
+        <article class="product-card group bg-white rounded-2xl overflow-hidden border border-sage/5 hover:shadow-lg transition-shadow">
+          <div class="aspect-[3/4] overflow-hidden relative">
+            <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover" loading="lazy"/>
+            <span class="absolute top-3 left-3 bg-cream/90 backdrop-blur text-[10px] tracking-wide uppercase px-2.5 py-1 rounded-full text-sageDark">${p.tag}</span>
+          </div>
+          <div class="p-4">
+            <h3 class="font-medium text-sageDark text-sm mb-1">${p.name}</h3>
+            <p class="text-xs text-sage/70 line-clamp-2 mb-3">${p.desc}</p>
+            <div class="flex items-center justify-between">
+              <span class="font-medium text-sage">R$ ${p.price.toLocaleString('pt-BR')}</span>
+              <button onclick="addToCart(${p.id})" class="text-xs px-3 py-1.5 border border-sage/30 rounded-full text-sageDark hover:bg-sage hover:text-cream hover:border-sage transition">Adicionar</button>
+            </div>
+          </div>
+        </article>`).join('');
+    }
+
+    function addToCart(id) {
+      const product = products.find(p => p.id === id);
+      const existing = cart.find(i => i.id === id);
+      if (existing) existing.qty += 1;
+      else cart.push({ ...product, qty: 1 });
+      updateCartUI();
+      openCart();
+    }
+
+    function removeFromCart(id) {
+      cart = cart.filter(i => i.id !== id);
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      const totalQty = cart.reduce((s, i) => s + i.qty, 0);
+      const countEl = document.getElementById('cartCount');
+      countEl.textContent = totalQty;
+      countEl.style.transform = totalQty > 0 ? 'scale(1)' : 'scale(0)';
+      const itemsEl = document.getElementById('cartItems');
+      if (cart.length === 0) {
+        itemsEl.innerHTML = `<div class="text-center py-12 text-sage/60"><p class="text-sm">Seu carrinho está vazio</p></div>`;
+      } else {
+        itemsEl.innerHTML = cart.map(i => `
+          <div class="flex gap-3 items-start">
+            <img src="${i.image}" alt="${i.name}" class="w-16 h-20 object-cover rounded-lg"/>
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-medium text-sageDark truncate">${i.name}</p>
+              <p class="text-xs text-sage/70">Qtd: ${i.qty}</p>
+              <p class="text-sm text-sage mt-0.5">R$ ${(i.price * i.qty).toLocaleString('pt-BR')}</p>
+            </div>
+            <button onclick="removeFromCart(${i.id})" class="text-sage/40 hover:text-dusty p-1"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></button>
+          </div>`).join('');
+      }
+      const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+      document.getElementById('cartTotal').textContent = `R$ ${total.toLocaleString('pt-BR')}`;
+      document.getElementById('checkoutBtn').disabled = cart.length === 0;
+    }
+
+    function openCart() {
+      document.getElementById('cartDrawer').classList.add('open');
+      document.getElementById('cartOverlay').classList.remove('opacity-0', 'pointer-events-none');
+      document.getElementById('cartOverlay').classList.add('opacity-100');
+    }
+
+    function closeCart() {
+      document.getElementById('cartDrawer').classList.remove('open');
+      document.getElementById('cartOverlay').classList.add('opacity-0', 'pointer-events-none');
+      document.getElementById('cartOverlay').classList.remove('opacity-100');
+    }
+
+    document.getElementById('checkoutBtn').addEventListener('click', () => {
+      if (cart.length === 0) return;
+      let msg = 'Olá! Gostaria de pedir as seguintes peças da FLORAÉ:%0A%0A';
+      cart.forEach(i => { msg += `• ${i.name} (x${i.qty}) — R$ ${(i.price * i.qty).toLocaleString('pt-BR')}%0A`; });
+      const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+      msg += `%0A*Total: R$ ${total.toLocaleString('pt-BR')}*%0A%0APoderia me ajudar com tamanhos e formas de pagamento?`;
+      window.open(`https://wa.me/5511999999999?text=${msg}`, '_blank');
+    });
+
+    document.getElementById('cartBtn').addEventListener('click', openCart);
+    document.getElementById('closeCart').addEventListener('click', closeCart);
+    document.getElementById('cartOverlay').addEventListener('click', closeCart);
+    renderProducts();
+    updateCartUI();
+  </script>
+</body>
+</html>
